@@ -75,7 +75,7 @@ const ProfilePage = () => {
                         {properties.filter(property => favorites.includes(property._id)).map(property => (
                             <div key={property._id} className="bg-white border rounded p-4 shadow">
                                 <h3 className="text-xl font-bold">{property.Name}</h3>
-                                <p className="text-gray-600">{property.Price}</p>
+                                <p className="text-gray-600">{property.Price} Lakhs</p>
                                 <p>{property.Description}</p>
                                 <p>{property.Location}</p>
                                 <p>{property.Bedrooms} Bedrooms</p>

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const propertySchema = new mongoose.Schema({
     Name: { type: String, required: true },
     Bedrooms: { type: Number, required: true },
-    Price: { type: String, required: true },
+    Price: { type: Number, required: true },
     Location: { type: String, required: true },
     Total_Area: { type: Number, required: true },
     Description: { type: String, required: true },

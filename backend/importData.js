@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const csv = require('csv-parser');
 const fs = require('fs');
 require('dotenv').config();
-const Property = require('../models/Property'); // Adjust the path if needed
+const Property = require('./models/Property'); // Adjust the path if needed
 
 // MongoDB connection
 const connectDB = async () => {
@@ -30,7 +30,7 @@ const importData = async () => {
             properties.push({
                 Name: row.Name,
                 Bedrooms: Number(row.Bedrooms), // Convert to number
-                Price: row.Price,
+                Price: Number(row.Price),
                 Location: row.Location,
                 Total_Area: Number(row.Total_Area), // Convert to number
                 Description: row.Description,
