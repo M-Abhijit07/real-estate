@@ -1,70 +1,134 @@
-# Getting Started with Create React App
+# Real Estate Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack real estate application built with **Node.js** (backend) and **React.js** (frontend). Users can browse properties, mark their favorites, and register/login to manage their profile and saved properties. The backend is deployed on **Render**, and the frontend is deployed on **Vercel**.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Frontend Setup](#frontend-setup)
+- [Backend Setup](#backend-setup)
+- [Environment Variables](#environment-variables)
+- [API Endpoints](#api-endpoints)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- User registration and login with JWT authentication.
+- Browse properties with detailed information (price, bedrooms, baths, etc.).
+- Favorite properties for quick access.
+- User-specific profile page displaying favorited properties.
+- Responsive design for mobile and desktop devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+### Frontend:
+- **React.js**
+- **TailwindCSS** for styling
+- **Vercel** for frontend deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend:
+- **Node.js**
+- **Express.js**
+- **MongoDB** (via Mongoose)
+- **JWT** (JSON Web Token) for authentication
+- **Render** for backend deployment
 
-### `npm run build`
+### Other Tools:
+- **dotenv** : for environment variable management
+- **bcrypt.js** : for password hashing
+- **CORS** : for cross-origin resource sharing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To get a local copy of the project up and running, follow these steps.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://www.npmjs.com/get-npm)
+- [MongoDB](https://docs.mongodb.com/manual/installation/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Frontend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/M-Abhijit07/real-estate.git
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Install dependencies**:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```bash
+    npm install
+    ```
 
-## Learn More
+3. **Start the frontend development server**:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+    npm start
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The frontend should now be running on ```http://localhost:3000```.
 
-### Code Splitting
+## Backend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **Navigate to the backend directory**:
 
-### Analyzing the Bundle Size
+    ```bash
+    cd ./backend
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Install dependencies**:
 
-### Making a Progressive Web App
+    ```bash
+    npm install
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. **Set up environment variables**:
 
-### Advanced Configuration
+    Create a ```.env``` file in the ```./backend``` directory and add the following:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    ```makefile
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret_key
+    ```
 
-### Deployment
+5. **Start the backend server**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    ```bash
+    node index.js
+    ```
 
-### `npm run build` fails to minify
+The backend should now be running on ```http://localhost:5000```.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Environment Variables
+Here are the environment variables required for the backend:
+
+- ```MONGODB_URI```: MongoDB connection string.
+- ```JWT_SECRET```: Secret key for signing JWT tokens
+
+## API Endpoints
+### Authentication:
+- ```POST /api/auth/register```: Register a new user.
+- ```POST /api/auth/login```: Login and receive a JWT token.
+### Properties:
+- ```GET /api/properties```: Get a list of all properties.
+- ```POST /api/properties```: Add a new property (admin use only).
+- ```GET /api/properties/:id```: Get details of a single property.
+### User:
+- ```PATCH /api/auth/update-favorites```: Update the list of a user's favorite properties.
+- ```GET /api/auth/user```: Fetch user profile and favorites.
+
+## Pictures
+
+<table>
+  <tr>
+    <td><img src="image.png" alt="Image 1" width="200"/></td>
+    <td><img src="image-1.png" alt="Image 2" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="image-2.png" alt="Image 3" width="200"/></td>
+    <td><img src="image-3.png" alt="Image 4" width="200"/></td>
+  </tr>
+</table>
