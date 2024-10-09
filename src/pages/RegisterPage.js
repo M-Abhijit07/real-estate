@@ -11,7 +11,7 @@ const RegisterPage = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch('https://real-estate-74l6.onrender.com/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

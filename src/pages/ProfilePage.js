@@ -15,7 +15,7 @@ const ProfilePage = () => {
         const fetchUserFavorites = async () => {
             if (user) {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/auth/user`, {
+                    const response = await fetch(`https://real-estate-74l6.onrender.com/api/auth/user`, {
                         headers: {
                             'Authorization': `Bearer ${user.token}`, // Include token in the header
                         },
@@ -32,7 +32,7 @@ const ProfilePage = () => {
         };
 
         const fetchProperties = async () => {
-            const response = await fetch('http://localhost:5000/api/properties');
+            const response = await fetch('https://real-estate-74l6.onrender.com/api/properties');
             const data = await response.json();
             setProperties(data);
         };
@@ -49,7 +49,7 @@ const ProfilePage = () => {
         setFavorites(updatedFavorites); // Update state
 
         // Send the updated favorites to the backend
-        await fetch(`http://localhost:5000/api/auth/update-favorites`, {
+        await fetch(`https://real-estate-74l6.onrender.com/api/auth/update-favorites`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

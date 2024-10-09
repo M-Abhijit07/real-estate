@@ -14,7 +14,7 @@ const PropertyDisplay = () => {
 
     useEffect(() => {
         const fetchProperties = async () => {
-            const response = await fetch('http://localhost:5000/api/properties');
+            const response = await fetch('https://real-estate-74l6.onrender.com/api/properties');
             const data = await response.json();
             setProperties(data);
         };
