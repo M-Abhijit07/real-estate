@@ -4,10 +4,11 @@ import { useAuth } from '../context/AuthContext';
 
 const withAuth = (WrappedComponent) => {
     return (props) => {
-        const { user } = useAuth(); // Get user from Auth context
+        const { user } = useAuth();
 
+        // If user is not authenticated, redirect to login page
         if (!user) {
-            return <Navigate to="/login" replace />; // Redirect to login if user is not authenticated
+            return <Navigate to="/login" />;
         }
 
         return <WrappedComponent {...props} />;

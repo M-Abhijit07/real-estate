@@ -1,16 +1,29 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null); // Initial state for user
+    // Initialize user state from sessionStorage
+    const [user, setUser] = useState(() => {
+        const storedUser = sessionStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+    // Update sessionStorage when user state changes
+    useEffect(() => {
+        if (user) {
+            sessionStorage.setItem('user', JSON.stringify(user));
+        } else {
+            sessionStorage.removeItem('user');
+        }
+    }, [user]);
 
     const login = (userData) => {
-        setUser(userData); // Set user data on login
+        setUser(userData); // Save user data in state and sessionStorage
     };
 
     const logout = () => {
-        setUser(null); // Clear user data on logout
+        setUser(null); // Clear user state and remove from sessionStorage
     };
 
     return (
@@ -20,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Custom hook for using auth context
+// Custom hook to use the AuthContext
 export const useAuth = () => {
     return useContext(AuthContext);
 };

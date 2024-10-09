@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useAuth();
-    const [error, setError] = useState(''); // State for error message
-    const navigate = useNavigate(); // Hook for navigation
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -22,20 +22,15 @@ const LoginPage = () => {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                // Check if the error message is related to user existence
-                if (response.status === 400) {
-                    setError('No such user exists'); // Set error message
-                }
-                throw new Error(errorData.message);
+                setError(errorData.message);
+                return;
             }
 
             const data = await response.json();
-            // Assuming the user object contains username, email, etc.
-            login({ username: data.username, token: data.token }); // Set the user data
-            
-            // Redirect to Property page after successful login
-            navigate('/properties'); // Use the useNavigate hook
+            login({ username: data.username, token: data.token }); // Store user info in AuthContext
 
+            // Redirect to properties page after successful login
+            navigate('/properties');
         } catch (error) {
             console.error('Error logging in:', error);
         }
@@ -45,7 +40,7 @@ const LoginPage = () => {
         <div className="flex justify-center items-center min-h-screen">
             <form onSubmit={handleLogin} className="bg-white p-6 rounded shadow-md">
                 <h2 className="mb-4 text-2xl font-bold">Login</h2>
-                {error && <p className="text-red-500 mb-4">{error}</p>} {/* Show error message */}
+                {error && <p className="text-red-500 mb-4">{error}</p>}
                 <input
                     type="email"
                     placeholder="Email"
@@ -65,12 +60,6 @@ const LoginPage = () => {
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Login
                 </button>
-                <p className="mt-4">
-                    Don't have an account?{' '}
-                    <Link to="/register" className="text-blue-500 hover:underline">
-                        Register here
-                    </Link>
-                </p>
             </form>
         </div>
     );
